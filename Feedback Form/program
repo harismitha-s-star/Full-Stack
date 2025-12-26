@@ -1,0 +1,67 @@
+FEEDBACKFORM.JSX
+import { useState } from "react";
+
+function App() {
+  // State for input
+  const [name, setName] = useState("");
+
+  // State for list of submitted feedback
+  const [feedbackList, setFeedbackList] = useState([]);
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (name.trim() === "") {
+      alert("Please enter your name");
+      return;
+    }
+
+    // Add new name to feedback list
+    setFeedbackList([...feedbackList, name.trim()]);
+
+    // Clear input
+    setName("");
+  };
+
+  return (
+    <div style={{ padding: "20px", fontFamily: "Arial" }}>
+      <h1>Simple Feedback Form</h1>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          style={{ padding: "8px", marginRight: "8px" }}
+        />
+        <button type="submit" style={{ padding: "8px" }}>
+          Submit
+        </button>
+      </form>
+
+      <h2>Submitted Names</h2>
+
+      {feedbackList.length === 0 ? (
+        <p>No feedback submitted yet.</p>
+      ) : (
+        <ul>
+          {feedbackList.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export default App;
+APP.JSX
+import FeedbackForm from "./core concepts/helloworld/FeedbackForm";
+function App() {
+    return <FeedbackForm/>
+
+}
+export default App
+
