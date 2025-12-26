@@ -1,0 +1,71 @@
+ATTENDANCETRACKER.JSX
+import { useState } from "react";
+
+
+function App() {
+  // Initial list of students
+  const initialStudents = [
+    { id: 1, name: "Alice", status: "Absent" },
+    { id: 2, name: "Bob", status: "Absent" },
+    { id: 3, name: "Charlie", status: "Absent" },
+    { id: 4, name: "David", status: "Absent" }
+  ];
+
+  const [students, setStudents] = useState(initialStudents);
+
+  // Function to toggle attendance
+  const toggleAttendance = (id) => {
+    const updatedStudents = students.map((student) =>
+      student.id === id
+        ? {
+            ...student,
+            status: student.status === "Present" ? "Absent" : "Present"
+          }
+        : student
+    );
+    setStudents(updatedStudents);
+  };
+
+  return (
+    <div className="container">
+      <h1>Attendance Tracker</h1>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {students.map((student) => (
+            <tr key={student.id}>
+              <td>{student.name}</td>
+              <td
+                className={student.status === "Present" ? "present" : "absent"}
+              >
+                {student.status}
+              </td>
+              <td>
+                <button onClick={() => toggleAttendance(student.id)}>
+                  Mark {student.status === "Present" ? "Absent" : "Present"}
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default App;
+APP.JSX
+import AttendanceTracker from "./core concepts/helloworld/AttendanceTracker";
+function App() {
+    return <AttendanceTracker/>
+
+}
+export default App
