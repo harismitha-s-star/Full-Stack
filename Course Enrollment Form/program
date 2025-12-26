@@ -1,0 +1,71 @@
+COURSEENROLLMENTFORM.JSX
+import { useState } from "react";
+
+function App() {
+  // State for form input
+  const [course, setCourse] = useState("");
+
+  // State for enrolled courses
+  const [enrolledCourses, setEnrolledCourses] = useState([]);
+
+  // Handle form submit
+  const handleEnroll = (e) => {
+    e.preventDefault();
+
+    if (course.trim() === "") {
+      alert("Please select a course");
+      return;
+    }
+
+    // Add course to the enrolled list
+    setEnrolledCourses([...enrolledCourses, course]);
+
+    // Clear input
+    setCourse("");
+  };
+
+  return (
+    <div style={{ padding: "20px", fontFamily: "Arial" }}>
+      <h1>Course Enrollment Form</h1>
+
+      <form onSubmit={handleEnroll}>
+        <select
+          value={course}
+          onChange={(e) => setCourse(e.target.value)}
+          style={{ padding: "8px", marginRight: "8px" }}
+        >
+          <option value="">-- Select a Course --</option>
+          <option value="Mathematics">Mathematics</option>
+          <option value="Physics">Physics</option>
+          <option value="Chemistry">Chemistry</option>
+          <option value="Biology">Biology</option>
+          <option value="Computer Science">Computer Science</option>
+        </select>
+        <button type="submit" style={{ padding: "8px" }}>
+          Enroll
+        </button>
+      </form>
+
+      <h2>Enrolled Courses</h2>
+
+      {enrolledCourses.length === 0 ? (
+        <p>No courses enrolled yet.</p>
+      ) : (
+        <ul>
+          {enrolledCourses.map((c, index) => (
+            <li key={index}>{c}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export default App;
+APP.JSX
+import CourseEnrollmentForm from "./core concepts/helloworld/CourseEnrollmentForm";
+function App() {
+    return <CourseEnrollmentForm/>
+
+}
+export default App
