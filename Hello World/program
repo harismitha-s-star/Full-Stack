@@ -1,0 +1,12 @@
+HELLOWORLD.JSX
+export default function HelloWorld()
+{
+    return <h1>Hello world</h1>;
+}
+APP.JSX
+import HelloWorld from "./core concepts/helloworld/HelloWorld"
+
+function App(){
+  return <HelloWorld/>
+}
+export default  App
