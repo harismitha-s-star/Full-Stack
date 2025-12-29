@@ -1,0 +1,108 @@
+FORMVALIDATION.JSX
+import { useState } from "react";
+
+function App() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
+
+  const [errors, setErrors] = useState({});
+
+  // Handle input change
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  // Validation function
+  const validate = () => {
+    let newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email is not valid";
+    }
+
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Handle submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validate()) {
+      alert("Form submitted successfully!");
+      console.log(formData);
+    }
+  };
+
+  return (
+    <div style={{ maxWidth: "400px", margin: "50px auto" }}>
+      <h2>React Form Validation</h2>
+
+      <form onSubmit={handleSubmit}>
+        {/* Name */}
+        <div>
+          <label>Name</label><br />
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+          <p style={{ color: "red" }}>{errors.name}</p>
+        </div>
+
+        {/* Email */}
+        <div>
+          <label>Email</label><br />
+          <input
+            type="text"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <p style={{ color: "red" }}>{errors.email}</p>
+        </div>
+
+        {/* Password */}
+        <div>
+          <label>Password</label><br />
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <p style={{ color: "red" }}>{errors.password}</p>
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+}
+
+export default App;
+APP.JSX
+import FormValidation from "./core concepts/helloworld/FormValidation";
+function App() {
+  return <FormValidation/>
+  }
+  export default App
