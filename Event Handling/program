@@ -1,0 +1,61 @@
+EVENTHANDLING.JSX
+import { useState } from "react";
+
+function App() {
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+
+  // Button click event
+  const handleClick = () => {
+    alert("Button Clicked!");
+  };
+
+  // Input change event
+  const handleChange = (e) => {
+    setName(e.target.value);
+  };
+
+  // Form submit event
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setMessage(`Hello, ${name}! Form submitted successfully.`);
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>React Event Handling</h1>
+
+      {/* Button Click */}
+      <button onClick={handleClick}>Click Me</button>
+
+      <br /><br />
+
+      {/* Input Change */}
+      <input
+        type="text"
+        placeholder="Enter your name"
+        value={name}
+        onChange={handleChange}
+      />
+
+      <br /><br />
+
+      {/* Form Submit */}
+      <form onSubmit={handleSubmit}>
+        <button type="submit">Submit</button>
+      </form>
+
+      <p>{message}</p>
+    </div>
+  );
+}
+
+export default App;
+APP.JSX
+import EventHandling from "./core concepts/helloworld/EventHandling";
+function App() {
+  return <EventHandling/>
+  }
+  export default App
+
+
