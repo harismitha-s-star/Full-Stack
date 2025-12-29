@@ -1,0 +1,38 @@
+PROPS.JSX
+function App() {
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>React Props Example (Single File)</h1>
+
+      <Student name="Harismitha" branch="CSE" marks={85} />
+      <Student name="Rahul" branch="ECE" marks={78} />
+      <Student name="Anita" branch="IT" marks={92} />
+    </div>
+  );
+}
+
+// Child component inside same file
+function Student(props) {
+  return (
+    <div
+      style={{
+        border: "1px solid #000",
+        padding: "10px",
+        marginBottom: "10px"
+      }}
+    >
+      <h3>Name: {props.name}</h3>
+      <p>Branch: {props.branch}</p>
+      <p>Marks: {props.marks}</p>
+    </div>
+  );
+}
+
+export default App;
+APP.JSX
+import Props from "./core concepts/helloworld/Props";
+function App() {
+  return <Props/>
+  }
+  export default App
+
