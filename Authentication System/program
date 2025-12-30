@@ -1,0 +1,116 @@
+AUTHENTICATIONSYSTEM.JSX
+import { useState } from "react";
+
+function App() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    // Hardcoded credentials (for simulation)
+    const validUsername = "admin";
+    const validPassword = "1234";
+
+    if (!username || !password) {
+      alert("⚠️ Please enter username and password!");
+      return;
+    }
+
+    if (username !== validUsername || password !== validPassword) {
+      alert("❌ Invalid username or password!");
+      return;
+    }
+
+    alert("✅ Login successful!");
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUsername("");
+    setPassword("");
+  };
+
+  // Dashboard after login
+  if (isLoggedIn) {
+    return (
+      <div style={styles.dashboard}>
+        <h1>Dashboard</h1>
+        <p>Welcome, {username}!</p>
+        <button onClick={handleLogout} style={styles.button}>
+          Logout
+        </button>
+      </div>
+    );
+  }
+
+  // Login Form
+  return (
+    <div style={styles.container}>
+      <h2>Login</h2>
+
+      <form onSubmit={handleLogin}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          style={styles.input}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={styles.input}
+        />
+
+        <button type="submit" style={styles.button}>
+          Login
+        </button>
+      </form>
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    width: "300px",
+    margin: "100px auto",
+    padding: "20px",
+    textAlign: "center",
+    fontFamily: "Arial",
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+  },
+  input: {
+    width: "100%",
+    padding: "8px",
+    margin: "8px 0",
+  },
+  button: {
+    width: "100%",
+    padding: "10px",
+    backgroundColor: "#4caf50",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+  dashboard: {
+    textAlign: "center",
+    marginTop: "100px",
+    fontFamily: "Arial",
+  },
+};
+
+export default App;
+APP.JSX
+import AuthenticationSystem from "./core concepts/helloworld/AuthenticationSystem";
+function App() {
+  return <AuthenticationSystem/>
+  }
+  export default App
