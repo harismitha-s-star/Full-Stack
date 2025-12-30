@@ -1,0 +1,100 @@
+USERPROFILEEDITINGSYSTEM.JSX
+import { useState } from "react";
+
+function App() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [age, setAge] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Form validation
+    if (!name || !email || !age) {
+      alert("⚠️ All fields are required!");
+      return;
+    }
+
+    if (!email.includes("@")) {
+      alert("⚠️ Enter a valid email address!");
+      return;
+    }
+
+    if (age <= 0 || isNaN(age)) {
+      alert("⚠️ Enter a valid age!");
+      return;
+    }
+
+    alert("✅ Profile updated successfully!");
+  };
+
+  return (
+    <div style={styles.container}>
+      <h2>User Profile</h2>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          style={styles.input}
+        />
+
+        <input
+          type="email"
+          placeholder="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={styles.input}
+        />
+
+        <input
+          type="number"
+          placeholder="Enter Age"
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+          style={styles.input}
+        />
+
+        <button type="submit" style={styles.button}>
+          Save Profile
+        </button>
+      </form>
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    width: "350px",
+    margin: "80px auto",
+    textAlign: "center",
+    fontFamily: "Arial",
+    padding: "20px",
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+  },
+  input: {
+    width: "90%",
+    padding: "8px",
+    margin: "8px 0",
+  },
+  button: {
+    padding: "10px 20px",
+    marginTop: "10px",
+    cursor: "pointer",
+    backgroundColor: "#2196f3",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+  },
+};
+
+export default App;
+APP.JSX
+import UserProfileEditingSystem from "./core concepts/helloworld/UserProfileEditingSystem";
+function App() {
+  return <UserProfileEditingSystem/>
+  }
+  export default App
