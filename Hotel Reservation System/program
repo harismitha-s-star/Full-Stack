@@ -1,0 +1,75 @@
+HOTELRESERVATIONSYSTEM.JSX
+function App() {
+
+  const reserveRoom = () => {
+    // User input using prompt
+    const name = prompt("Enter Guest Name:");
+    if (!name) {
+      alert("Reservation cancelled! Guest name is required.");
+      return;
+    }
+
+    const roomType = prompt(
+      "Enter Room Type:\nSingle / Double / Deluxe"
+    );
+    if (!roomType) {
+      alert("Reservation cancelled! Room type is required.");
+      return;
+    }
+
+    const nights = prompt("Enter Number of Nights:");
+    if (!nights || isNaN(nights) || nights <= 0) {
+      alert("Invalid number of nights!");
+      return;
+    }
+
+    // Confirm reservation
+    const confirmation = confirm(
+      `Please confirm your reservation:\n\n` +
+      `Guest Name: ${name}\n` +
+      `Room Type: ${roomType}\n` +
+      `Nights: ${nights}`
+    );
+
+    if (confirmation) {
+      alert("✅ Hotel Room Reserved Successfully!");
+    } else {
+      alert("❌ Reservation Cancelled.");
+    }
+  };
+
+  return (
+    <div style={styles.container}>
+      <h1>Hotel Reservation System</h1>
+      <p>Click the button to reserve a hotel room</p>
+      <button onClick={reserveRoom} style={styles.button}>
+        Reserve Room
+      </button>
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    textAlign: "center",
+    marginTop: "100px",
+    fontFamily: "Arial",
+  },
+  button: {
+    padding: "12px 20px",
+    fontSize: "16px",
+    cursor: "pointer",
+    backgroundColor: "green",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+  },
+};
+
+export default App;
+APP.JSX
+import HotelReservationSystem from "./core concepts/helloworld/HotelReservationSystem";
+function App() {
+  return <HotelReservationSystem/>
+  }
+  export default App
