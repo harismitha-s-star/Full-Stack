@@ -1,0 +1,114 @@
+ECOMMERCEPRODUCTLISTING.JSX
+import { useState } from "react";
+
+function App() {
+  const products = [
+    { id: 1, name: "Laptop", price: 50000 },
+    { id: 2, name: "Headphones", price: 2000 },
+    { id: 3, name: "Smartphone", price: 25000 },
+  ];
+
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+    alert(`${product.name} added to cart`);
+  };
+
+  const removeFromCart = (index) => {
+    const updatedCart = cart.filter((_, i) => i !== index);
+    setCart(updatedCart);
+  };
+
+  return (
+    <div style={styles.container}>
+      <h1>🛒 Simple E-Commerce Store</h1>
+
+      {/* Product List */}
+      <h2>Products</h2>
+      <div style={styles.productList}>
+        {products.map((product) => (
+          <div key={product.id} style={styles.product}>
+            <h3>{product.name}</h3>
+            <p>₹{product.price}</p>
+            <button
+              onClick={() => addToCart(product)}
+              style={styles.button}
+            >
+              Add to Cart
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Cart Section */}
+      <h2>Cart ({cart.length} items)</h2>
+      {cart.length === 0 ? (
+        <p>No items in cart</p>
+      ) : (
+        cart.map((item, index) => (
+          <div key={index} style={styles.cartItem}>
+            {item.name} - ₹{item.price}
+            <button
+              onClick={() => removeFromCart(index)}
+              style={styles.removeBtn}
+            >
+              Remove
+            </button>
+          </div>
+        ))
+      )}
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    maxWidth: "800px",
+    margin: "40px auto",
+    fontFamily: "Arial",
+    textAlign: "center",
+  },
+  productList: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "20px",
+    flexWrap: "wrap",
+  },
+  product: {
+    border: "1px solid #ccc",
+    padding: "15px",
+    width: "200px",
+    borderRadius: "8px",
+  },
+  button: {
+    padding: "8px 12px",
+    backgroundColor: "#4caf50",
+    color: "white",
+    border: "none",
+    cursor: "pointer",
+    borderRadius: "5px",
+  },
+  cartItem: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "8px",
+    borderBottom: "1px solid #ccc",
+  },
+  removeBtn: {
+    backgroundColor: "red",
+    color: "white",
+    border: "none",
+    cursor: "pointer",
+    borderRadius: "4px",
+    padding: "4px 8px",
+  },
+};
+
+export default App;
+APP.JSX
+import EcommerceProductListing from "./core concepts/helloworld/EcommerceProductListing";
+function App() {
+  return <EcommerceProductListing/>
+  }
+  export default App
