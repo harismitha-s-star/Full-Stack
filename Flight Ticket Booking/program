@@ -1,0 +1,71 @@
+FLIGHTTICKETBOOKING.JSX
+function App() {
+
+  const bookTicket = () => {
+    // Prompt dialog – user input
+    const name = prompt("Enter Passenger Name:");
+    if (!name) {
+      alert("Booking cancelled! Name is required.");
+      return;
+    }
+
+    const destination = prompt("Enter Destination:");
+    if (!destination) {
+      alert("Booking cancelled! Destination is required.");
+      return;
+    }
+
+    const seats = prompt("Enter Number of Seats:");
+    if (!seats || isNaN(seats)) {
+      alert("Invalid seat number!");
+      return;
+    }
+
+    // Confirm dialog
+    const confirmation = confirm(
+      `Please confirm your booking:\n\nName: ${name}\nDestination: ${destination}\nSeats: ${seats}`
+    );
+
+    if (confirmation) {
+      // Alert dialog
+      alert("✅ Flight Ticket Booked Successfully!");
+    } else {
+      alert("❌ Booking Cancelled by User.");
+    }
+  };
+
+  return (
+    <div style={styles.container}>
+      <h1>Flight Ticket Booking</h1>
+      <p>Click the button below to book your flight ticket</p>
+      <button onClick={bookTicket} style={styles.button}>
+        Book Ticket
+      </button>
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    textAlign: "center",
+    marginTop: "100px",
+    fontFamily: "Arial",
+  },
+  button: {
+    padding: "12px 20px",
+    fontSize: "16px",
+    cursor: "pointer",
+    backgroundColor: "#007bff",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+  },
+};
+
+export default App;
+APP.JSX
+import FlightTicketBooking from "./core concepts/helloworld/FlightTicketBooking";
+function App() {
+  return <FlightTicketBooking/>
+  }
+  export default App
