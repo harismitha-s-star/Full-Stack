@@ -1,0 +1,82 @@
+CABBOOKINGAPPLICATION.JSX
+function App() {
+
+  const bookCab = () => {
+    // Prompt dialogs for user input
+    const name = prompt("Enter Passenger Name:");
+    if (!name) {
+      alert("Booking cancelled! Name is required.");
+      return;
+    }
+
+    const pickup = prompt("Enter Pickup Location:");
+    if (!pickup) {
+      alert("Booking cancelled! Pickup location is required.");
+      return;
+    }
+
+    const drop = prompt("Enter Drop Location:");
+    if (!drop) {
+      alert("Booking cancelled! Drop location is required.");
+      return;
+    }
+
+    const cabType = prompt(
+      "Enter Cab Type:\nMini / Sedan / SUV"
+    );
+    if (!cabType) {
+      alert("Booking cancelled! Cab type is required.");
+      return;
+    }
+
+    // Confirm dialog
+    const confirmation = confirm(
+      `Please confirm your cab booking:\n\n` +
+      `Passenger: ${name}\n` +
+      `Pickup: ${pickup}\n` +
+      `Drop: ${drop}\n` +
+      `Cab Type: ${cabType}`
+    );
+
+    if (confirmation) {
+      alert("✅ Cab Booked Successfully!\nDriver will contact you soon.");
+    } else {
+      alert("❌ Cab Booking Cancelled.");
+    }
+  };
+
+  return (
+    <div style={styles.container}>
+      <h1>Online Cab Booking Application</h1>
+      <p>Click the button below to book a cab</p>
+      <button onClick={bookCab} style={styles.button}>
+        Book Cab
+      </button>
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    textAlign: "center",
+    marginTop: "100px",
+    fontFamily: "Arial",
+  },
+  button: {
+    padding: "12px 22px",
+    fontSize: "16px",
+    cursor: "pointer",
+    backgroundColor: "#ff9800",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+  },
+};
+
+export default App;
+APP.JSX
+import CabBookingApplication from "./core concepts/helloworld/CabBookingApplication";
+function App() {
+  return <CabBookingApplication/>
+  }
+  export default App
