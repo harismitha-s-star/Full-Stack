@@ -1,0 +1,102 @@
+REACTROUTER.JSX
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
+function Dashboard() {
+  return (
+    <div>
+      <h2>Dashboard</h2>
+      <p>Total Students: 3</p>
+      <p>Courses Offered: 5</p>
+    </div>
+  );
+}
+
+function Students() {
+  const students = [
+    { id: 1, name: "Alice", course: "CS" },
+    { id: 2, name: "Bob", course: "IT" },
+    { id: 3, name: "Charlie", course: "ECE" },
+  ];
+
+  return (
+    <div>
+      <h2>Students List</h2>
+      <table border="1" cellPadding="8">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Course</th>
+          </tr>
+        </thead>
+        <tbody>
+          {students.map((s) => (
+            <tr key={s.id}>
+              <td>{s.id}</td>
+              <td>{s.name}</td>
+              <td>{s.course}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function Profile() {
+  return (
+    <div>
+      <h2>Student Profile</h2>
+      <p>Name: Alice</p>
+      <p>Course: Computer Science</p>
+      <p>Email: alice@gmail.com</p>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <div style={styles.container}>
+        <h1>Student Management Dashboard</h1>
+
+        {/* Navigation */}
+        <nav style={styles.nav}>
+          <Link to="/" style={styles.link}>Dashboard</Link>
+          <Link to="/students" style={styles.link}>Students</Link>
+          <Link to="/profile" style={styles.link}>Profile</Link>
+        </nav>
+
+        {/* Pages */}
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/students" element={<Students />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
+}
+
+const styles = {
+  container: {
+    fontFamily: "Arial",
+    padding: "20px",
+  },
+  nav: {
+    display: "flex",
+    gap: "20px",
+    marginBottom: "20px",
+  },
+  link: {
+    textDecoration: "none",
+    color: "blue",
+    fontWeight: "bold",
+  },
+};
+APP.JSX
+import ReactRouter from "./core concepts/helloworld/ReactRouter";
+function App() {
+  return <ReactRouter/>
+  }
+  export default App
