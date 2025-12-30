@@ -1,0 +1,147 @@
+STUDENTMANAGEMENTDASHBOARD.JSX
+import { useState } from "react";
+
+function App() {
+  const [activeTab, setActiveTab] = useState("dashboard");
+
+  const students = [
+    { id: 1, name: "Alice", age: 20, grade: "A" },
+    { id: 2, name: "Bob", age: 21, grade: "B" },
+    { id: 3, name: "Charlie", age: 19, grade: "A+" },
+  ];
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "dashboard":
+        return (
+          <div>
+            <h2>Dashboard Overview</h2>
+            <p>Total Students: {students.length}</p>
+            <p>Average Age: {(
+              students.reduce((acc, s) => acc + s.age, 0) / students.length
+            ).toFixed(1)}</p>
+          </div>
+        );
+      case "students":
+        return (
+          <div>
+            <h2>Student List</h2>
+            <table style={styles.table}>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Grade</th>
+                </tr>
+              </thead>
+              <tbody>
+                {students.map((s) => (
+                  <tr key={s.id}>
+                    <td>{s.id}</td>
+                    <td>{s.name}</td>
+                    <td>{s.age}</td>
+                    <td>{s.grade}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      case "reports":
+        return (
+          <div>
+            <h2>Reports</h2>
+            <p>All students are performing well. No pending reports.</p>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div style={styles.container}>
+      <h1>Student Management Dashboard</h1>
+
+      {/* Navigation */}
+      <div style={styles.nav}>
+        <button
+          style={activeTab === "dashboard" ? styles.activeTab : styles.tab}
+          onClick={() => setActiveTab("dashboard")}
+        >
+          Dashboard
+        </button>
+        <button
+          style={activeTab === "students" ? styles.activeTab : styles.tab}
+          onClick={() => setActiveTab("students")}
+        >
+          Students
+        </button>
+        <button
+          style={activeTab === "reports" ? styles.activeTab : styles.tab}
+          onClick={() => setActiveTab("reports")}
+        >
+          Reports
+        </button>
+      </div>
+
+      {/* Content */}
+      <div style={styles.content}>{renderContent()}</div>
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    fontFamily: "Arial",
+    padding: "20px",
+    maxWidth: "800px",
+    margin: "20px auto",
+    textAlign: "center",
+  },
+  nav: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "10px",
+    marginBottom: "20px",
+  },
+  tab: {
+    padding: "8px 16px",
+    cursor: "pointer",
+    border: "1px solid #ccc",
+    borderRadius: "4px",
+    backgroundColor: "#f1f1f1",
+  },
+  activeTab: {
+    padding: "8px 16px",
+    cursor: "pointer",
+    border: "1px solid #2196f3",
+    borderRadius: "4px",
+    backgroundColor: "#2196f3",
+    color: "white",
+  },
+  content: {
+    textAlign: "left",
+  },
+  table: {
+    width: "100%",
+    borderCollapse: "collapse",
+  },
+  th: {
+    border: "1px solid #ccc",
+    padding: "8px",
+  },
+  td: {
+    border: "1px solid #ccc",
+    padding: "8px",
+  },
+};
+
+export default App;
+APP.JSX
+import StudentManagementDashboard from "./core concepts/helloworld/StudentManagementDashboard";
+function App() {
+  return <StudentManagementDashboard/>
+  }
+  export default App
