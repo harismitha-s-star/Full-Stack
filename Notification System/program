@@ -1,0 +1,104 @@
+NOTIFICATIONSYSTEM.JSX
+import { useState } from "react";
+
+function App() {
+  const [notifications, setNotifications] = useState([]);
+
+  const addNotification = (message) => {
+    const id = Date.now();
+    setNotifications([...notifications, { id, message }]);
+
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+      setNotifications((prev) =>
+        prev.filter((notification) => notification.id !== id)
+      );
+    }, 4000);
+  };
+
+  const removeNotification = (id) => {
+    setNotifications(
+      notifications.filter((notification) => notification.id !== id)
+    );
+  };
+
+  return (
+    <div style={styles.container}>
+      <h1>Dashboard</h1>
+
+      <div style={styles.buttons}>
+        <button
+          onClick={() => addNotification("✅ Data saved successfully")}
+        >
+          Success Notification
+        </button>
+        <button
+          onClick={() => addNotification("⚠️ Warning: Check your input")}
+        >
+          Warning Notification
+        </button>
+        <button
+          onClick={() => addNotification("❌ Error occurred while processing")}
+        >
+          Error Notification
+        </button>
+      </div>
+
+      {/* Notification Area */}
+      <div style={styles.notificationBox}>
+        {notifications.map((n) => (
+          <div key={n.id} style={styles.notification}>
+            {n.message}
+            <button
+              onClick={() => removeNotification(n.id)}
+              style={styles.closeBtn}
+            >
+              ✖
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    fontFamily: "Arial",
+    textAlign: "center",
+    marginTop: "50px",
+  },
+  buttons: {
+    marginBottom: "20px",
+  },
+  notificationBox: {
+    position: "fixed",
+    top: "20px",
+    right: "20px",
+    width: "260px",
+  },
+  notification: {
+    backgroundColor: "#f1f1f1",
+    padding: "10px",
+    marginBottom: "10px",
+    borderRadius: "5px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    boxShadow: "0 0 5px rgba(0,0,0,0.2)",
+  },
+  closeBtn: {
+    background: "transparent",
+    border: "none",
+    cursor: "pointer",
+    fontSize: "16px",
+  },
+};
+
+export default App;
+APP.JSX
+import NotificationSystem from "./core concepts/helloworld/NotificationSystem";
+function App() {
+  return <NotificationSystem/>
+  }
+  export default App
