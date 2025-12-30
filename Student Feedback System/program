@@ -1,0 +1,105 @@
+STUDENTFEEDBACKSYSTEM.JSX
+import { useState } from "react";
+
+function App() {
+  const [rating, setRating] = useState("");
+  const [comment, setComment] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!rating || !comment) {
+      alert("⚠️ Please provide both rating and comments!");
+      return;
+    }
+
+    setSubmitted(true);
+    alert("✅ Feedback submitted successfully!");
+  };
+
+  return (
+    <div style={styles.container}>
+      <h2>Student Feedback Form</h2>
+
+      {!submitted ? (
+        <form onSubmit={handleSubmit}>
+          <label>Rate the Course:</label>
+          <select
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+            style={styles.input}
+          >
+            <option value="">Select Rating</option>
+            <option value="1">⭐ 1 - Poor</option>
+            <option value="2">⭐⭐ 2 - Fair</option>
+            <option value="3">⭐⭐⭐ 3 - Good</option>
+            <option value="4">⭐⭐⭐⭐ 4 - Very Good</option>
+            <option value="5">⭐⭐⭐⭐⭐ 5 - Excellent</option>
+          </select>
+
+          <textarea
+            placeholder="Enter your comments"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            style={styles.textarea}
+          />
+
+          <button type="submit" style={styles.button}>
+            Submit Feedback
+          </button>
+        </form>
+      ) : (
+        <div style={styles.result}>
+          <h3>Thank You for Your Feedback!</h3>
+          <p><b>Rating:</b> {rating} ⭐</p>
+          <p><b>Comments:</b> {comment}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    width: "400px",
+    margin: "80px auto",
+    padding: "20px",
+    fontFamily: "Arial",
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+    textAlign: "center",
+  },
+  input: {
+    width: "100%",
+    padding: "8px",
+    margin: "10px 0",
+  },
+  textarea: {
+    width: "100%",
+    height: "80px",
+    padding: "8px",
+    margin: "10px 0",
+  },
+  button: {
+    width: "100%",
+    padding: "10px",
+    backgroundColor: "#4caf50",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+  result: {
+    marginTop: "20px",
+    textAlign: "left",
+  },
+};
+
+export default App;
+APP.JSX
+import StudentFeedbackSystem from "./core concepts/helloworld/StudentFeedbackSystem";
+function App() {
+  return <StudentFeedbackSystem/>
+  }
+  export default App
