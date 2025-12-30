@@ -1,0 +1,140 @@
+DYNAMICREGISTRATIONFORM.JSX
+import { useState } from "react";
+
+function App() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    workshop: "",
+    mode: "Online",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!formData.name || !formData.email || !formData.workshop) {
+      alert("⚠️ Please fill all the fields!");
+      return;
+    }
+
+    if (!formData.email.includes("@")) {
+      alert("⚠️ Enter a valid email address!");
+      return;
+    }
+
+    alert("✅ Workshop Registration Successful!");
+  };
+
+  return (
+    <div style={styles.page}>
+      {/* Registration Form */}
+      <div style={styles.formBox}>
+        <h2>Workshop Registration</h2>
+
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={formData.name}
+            onChange={handleChange}
+            style={styles.input}
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            value={formData.email}
+            onChange={handleChange}
+            style={styles.input}
+          />
+
+          <input
+            type="text"
+            name="workshop"
+            placeholder="Workshop Title"
+            value={formData.workshop}
+            onChange={handleChange}
+            style={styles.input}
+          />
+
+          <select
+            name="mode"
+            value={formData.mode}
+            onChange={handleChange}
+            style={styles.input}
+          >
+            <option>Online</option>
+            <option>Offline</option>
+          </select>
+
+          <button type="submit" style={styles.button}>
+            Register
+          </button>
+        </form>
+      </div>
+
+      {/* Live Preview */}
+      <div style={styles.previewBox}>
+        <h2>Live Preview</h2>
+        <p><b>Name:</b> {formData.name || "—"}</p>
+        <p><b>Email:</b> {formData.email || "—"}</p>
+        <p><b>Workshop:</b> {formData.workshop || "—"}</p>
+        <p><b>Mode:</b> {formData.mode}</p>
+      </div>
+    </div>
+  );
+}
+
+const styles = {
+  page: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "40px",
+    marginTop: "60px",
+    fontFamily: "Arial",
+  },
+  formBox: {
+    width: "300px",
+    padding: "20px",
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+  },
+  previewBox: {
+    width: "300px",
+    padding: "20px",
+    border: "1px solid #4caf50",
+    borderRadius: "8px",
+    backgroundColor: "#f9fff9",
+  },
+  input: {
+    width: "100%",
+    padding: "8px",
+    margin: "8px 0",
+  },
+  button: {
+    width: "100%",
+    padding: "10px",
+    backgroundColor: "#4caf50",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+};
+
+export default App;
+APP.JSX
+import DynamicRegistrationForm from "./core concepts/helloworld/DynamicRegistrationForm";
+function App() {
+  return <DynamicRegistrationForm/>
+  }
+  export default App
